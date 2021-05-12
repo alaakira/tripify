@@ -1,19 +1,20 @@
 package com.tripify.demo.message_handler;
 
-@org.springframework.web.bind.annotation.ResponseBody
-public class ResponseBody {
+import java.io.Serializable;
 
-    int code = 200;
+public class ResponseBody<T> {
 
-    Object data;
+    public int code = 200;
 
-    String message = "DEFAULT_MESSAGE";
+    public T data;
 
-    public ResponseBody(Object data) {
+    public String message = "DEFAULT_MESSAGE";
+
+    public ResponseBody(T data) {
         this.data = data;
     }
 
-    public ResponseBody(Object data, String message) {
+    public ResponseBody(T data, String message) {
         this.data = data;
         this.message = message;
     }
