@@ -1,8 +1,8 @@
-package com.tripify.demo.auth.exceptions;
+package com.tripify.demo.exceptions;
 
 public class ExpiredJwtToken extends Exception{
 
-    private static String message = "Token has been expired";
+    private static final String message = "Token has been expired";
 
     public ExpiredJwtToken() {
         super(message);

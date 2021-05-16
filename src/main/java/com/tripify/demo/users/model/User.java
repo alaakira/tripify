@@ -1,11 +1,13 @@
 package com.tripify.demo.users.model;
 
+import com.tripify.demo.strings.ColumnsNames;
+import com.tripify.demo.strings.TablesNames;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = TablesNames.users)
 public class User {
 
     public User() {
@@ -19,13 +21,13 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = ColumnsNames.id)
     private long id;
 
-    @Column(name = "phone")
+    @Column(name = ColumnsNames.phone,nullable = false,unique = true)
     private String phone;
 
-    @Column(name = "password")
+    @Column(name = ColumnsNames.password,nullable = false)
     private String password;
 
     public void setId(Long id) {
