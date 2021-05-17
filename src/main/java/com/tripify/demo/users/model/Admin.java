@@ -2,19 +2,22 @@ package com.tripify.demo.users.model;
 
 import com.tripify.demo.strings.ColumnsNames;
 import com.tripify.demo.strings.TablesNames;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = TablesNames.users)
-public class User {
+@Table(name = TablesNames.admins)
+public class Admin {
 
-    public User() {
+    public Admin() {
     }
 
-    public User(long id, String phone, String password) {
+    public Admin(long id, String phone, String password) {
         this.id = id;
+        this.phone = phone;
+        this.password = password;
+    }
+    public Admin(String phone, String password) {
         this.phone = phone;
         this.password = password;
     }

@@ -1,9 +1,9 @@
 package com.tripify.demo.filters;
 
-import com.tripify.demo.exceptions.ExpiredJwtToken;
 import com.tripify.demo.auth.jwt.JWTUtils;
-import com.tripify.demo.auth.services.UserDetailServices;
+import com.tripify.demo.auth.services.AdminAuthServices;
 import com.tripify.demo.consts.Keys;
+import com.tripify.demo.exceptions.ExpiredJwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +25,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     JWTUtils jwtUtils;
 
     @Autowired
-    UserDetailServices detailServices;
+    AdminAuthServices detailServices;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,

@@ -1,6 +1,6 @@
 package com.tripify.demo.auth.payload.requests;
 
-public class SignInRequest {
+public class AdminSignInRequest {
     public String phone;
     public String password;
 

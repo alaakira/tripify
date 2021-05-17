@@ -1,15 +1,13 @@
 package com.tripify.demo.auth.payload;
 
-import com.tripify.demo.users.model.User;
+import com.tripify.demo.users.model.Admin;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails {
 
@@ -18,7 +16,7 @@ public class UserPrincipal implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
     private Map<String, Object> attributes;
-    private User user;
+    private Admin admin;
 
     public UserPrincipal(Long id, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
@@ -27,12 +25,12 @@ public class UserPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
-    public UserPrincipal(Long id, String email, String password, Collection<? extends GrantedAuthority> authorities, User user) {
+    public UserPrincipal(Long id, String email, String password, Collection<? extends GrantedAuthority> authorities, Admin admin) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
-        this.user = user;
+        this.admin = admin;
     }
 
     @Override
@@ -82,20 +80,20 @@ public class UserPrincipal implements UserDetails {
         this.attributes = attributes;
     }
 
-    public static UserPrincipal create(User user) {
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    public static UserPrincipal create(Admin admin) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
 
         return new UserPrincipal(
-                user.getId(),
-                user.getPhone(),
-                user.getPassword(),
+                admin.getId(),
+                admin.getPhone(),
+                admin.getPassword(),
                 authorities,
-                user
+                admin
         );
     }
 
-    public static UserPrincipal create(User user, Map<String, Object> attributes) {
-        UserPrincipal userPrincipal = UserPrincipal.create(user);
+    public static UserPrincipal create(Admin admin, Map<String, Object> attributes) {
+        UserPrincipal userPrincipal = UserPrincipal.create(admin);
         userPrincipal.setAttributes(attributes);
         return userPrincipal;
     }

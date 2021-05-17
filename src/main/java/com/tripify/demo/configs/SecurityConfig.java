@@ -1,6 +1,6 @@
 package com.tripify.demo.configs;
 
-import com.tripify.demo.auth.services.UserDetailServices;
+import com.tripify.demo.auth.services.AdminAuthServices;
 import com.tripify.demo.consts.URLs;
 import com.tripify.demo.filters.JwtRequestFilter;
 import com.tripify.demo.message_handler.JwtAuthenticationEntryPoint;
@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Autowired
-    private UserDetailServices jwtUserDetailsService;
+    private AdminAuthServices jwtUserDetailsService;
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
@@ -55,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/auth/**");
+        web.ignoring().antMatchers(URLs.AUTH_CONTROLLER +"/**");
     }
 
 
@@ -68,7 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 // dont authenticate this particular request
                 .authorizeRequests()
-                .antMatchers(URLs.AUTH_CONTROLLER+"/**").permitAll().
+                .antMatchers(URLs.AUTH_CONTROLLER +"/**").permitAll().
                 // all other requests need to be authenticated
                         anyRequest().authenticated().and().
                 // make sure we use stateless session; session won't be used to

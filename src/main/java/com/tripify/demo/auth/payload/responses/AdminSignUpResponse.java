@@ -2,13 +2,13 @@ package com.tripify.demo.auth.payload.responses;
 
 import java.io.Serializable;
 
-public class SignUpResponse implements Serializable {
+public class AdminSignUpResponse implements Serializable {
     String token;
 
-    public SignUpResponse() {
+    public AdminSignUpResponse() {
     }
 
-    public SignUpResponse(String token) {
+    public AdminSignUpResponse(String token) {
         this.token = token;
     }
 
